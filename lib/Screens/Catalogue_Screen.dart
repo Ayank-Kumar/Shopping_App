@@ -1,11 +1,23 @@
+///init state - initiall load=true ke liye built , fir jaise hi aa jaye , to again setState load=false
+
+///enum of fav - value to two option of popmenubutton.
+///jo select uske according favourite ko value deke setState.
+
+///aakhir mai cart ka symbol - click krne pai navigate aur ye CartProvider ko sunega akela - via consumer.
+///ki uske according apne pai dot rakhna ya nahi. Although hr baar ho raha wo redundant.
+
+///Ya to loading, Ya fir GridBuilder usin Product Widget, info from Prod Provider
+///List dene ke liye ChangeNotifierProvider.value - ye was helpful in recycling widget in fav-all transition
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../Provider/Cart_Provider.dart';
+
 import '../Badge_Widget.dart';
+import '../Provider/Cart_Provider.dart';
+import '../Provider/Products_Provider.dart';
+import '../models/Drawer.dart';
 import '../models/Product_Object.dart';
 import 'Cart_Screen.dart';
-import '../models/Drawer.dart';
-import '../Provider/Products_Provider.dart';
 
 enum Fav { yes, no }
 
@@ -76,7 +88,7 @@ class _Catalogue_ScreenState extends State<Catalogue_Screen> {
                     ),
                   ]),
           Consumer<Cart_Provider>(
-            builder: (ctx, cart, ch) => Badge(
+            builder: (ctx, cart, ch) => Badge_Widget(//name clash ho raha tha badge widget ke karan
               value: cart_Usage.itemsCount,
               child: IconButton(
                 icon: const Icon(

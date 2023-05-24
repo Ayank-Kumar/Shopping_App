@@ -1,9 +1,16 @@
+///app bar ka + button navigation.push to Edit Screen Page - with empty data for all initially
+///aur body mai phle fetch intial of product providers ,tb tak loading.
+///wo fetch intial notify listener jisse iski body jo usko sun rhi through consumer - wo rebuild.
+///achha fect intial mai ek arg - ki filter by user - to wo yaha true - accordingly list return
+///and widget listview.builder made inside RefreshIndicator() widget.
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_mania/Screens/Edit_Products_Screen.dart';
+
 import '../Provider/Products_Provider.dart';
-import '../models/Product_List_Object.dart';
 import '../models/Drawer.dart';
+import '../models/Product_List_Object.dart';
 
 class Products_Backstore_Screen extends StatelessWidget {
   static const routeName = '/editing';

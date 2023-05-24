@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shopping_mania/Screens/User_BackStore_Screen.dart';
 import 'package:shopping_mania/models/Drawer.dart';
+
 import '../Provider/Product_BluePrint.dart';
 import '../Provider/Products_Provider.dart';
-import 'package:provider/provider.dart';
 
 class Edit_Products_Screen extends StatefulWidget {
   static const routeName = '/editor';
@@ -43,6 +44,7 @@ class _Edit_Products_ScreenState extends State<Edit_Products_Screen> {
     'imageURL': '',
   };
 
+  /// useless , initstate mai context wali cheeze kaam nahi krti.
   @override
   void initState() {
     //.of(context) -> mai context chahiye hota hai - aur init state kisi widget se aisa jura hua nhi hota
@@ -54,9 +56,11 @@ class _Edit_Products_ScreenState extends State<Edit_Products_Screen> {
   bool first = true;
   bool loading = false;
 
-//ye dono function yhi - that what do you want to get done every time / initial once.
-  // ye bhi build ke phle chalta hai - init state aur didChangeDependancy - dono hi stateful widget mai aate hai.
-  //ye didChange har rebuild pai chalta hai - baki change kaise bhi aa raha ho statefullness ke karan
+  /// ye bhi build ke phle chalta hai- init state aur didChangeDependancy- dono hi stateful widget mai aate hai.
+  /// extract karo page ke passed arguments, if != null to UI ke initial data mai use bhar do.
+
+  /// yaha pai ek first[ki dobara fit na ho data] var aur didChangeDep milake,
+  /// I think init state yhi combination to hota hai
   @override
   void didChangeDependencies() {
     if (first) {
@@ -83,10 +87,15 @@ class _Edit_Products_ScreenState extends State<Edit_Products_Screen> {
     super.didChangeDependencies();
   }
 
-//stateful mai build ke bahar bhi context mil jata hai provider,modalRoute ke liye.
+///stateful mai build ke bahar bhi context mil jata hai provider,modalRoute ke liye.
 
-//jo bhi time le raha ho use asynchronous kr do - taki blocking of code na ho .
-// aur async hone ke baad ab wo later moment pai future return krega jiske baad wo to-do list mai jur jayega
+///jo bhi time le raha ho use asynchronous kr do - taki blocking of code na ho .
+/// aur async hone ke baad ab wo later moment pai future return krega jiske baad wo to-do list mai jur jayega
+
+  ///Ye wo print wale icon pai - phle validate fir save. SetState kr dega loading = true
+  ///Fir initID ke basis pai [jo changedDep ke time initialise hua hoga] - products provider ke methods use
+  ///if initID!= null to update , else add method.
+  ///Agar fail - to dialog box dikha dega
   Future<void> saveForm() async {
 
     //ye sare textfield ke validate wale chalayega
@@ -158,6 +167,10 @@ class _Edit_Products_ScreenState extends State<Edit_Products_Screen> {
 
   }
 
+  /// loading = false jb changeDp khatam hoga - tp ye re-render from ghumti chakri se UI
+  /// bhai form ka Key hota hai usmai TextField ka focus node hota hai
+  /// inse global access mil jata hai - jaise unke andar se bahar ke method mai koi chnage krna ho
+  /// Baki TextField ke khud ke function jinka use kiya
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,8 +1,14 @@
+///jb orderNow pai dabao - to setState mai ordering true krke re-render
+/// jb tk loading - order Provider ka method use for adding Order_Item.
+/// Jb ho jaye to list empty aur notify listeners.
+/// Cart Provider chahiye taki data/list mil jaye. Saath mai Cart Object widget se render kr lenge.
+
 import 'package:flutter/material.dart';
-import '../Provider/Cart_Provider.dart';
 import 'package:provider/provider.dart';
-import '../models/Cart_Object.dart';
+
+import '../Provider/Cart_Provider.dart';
 import '../Provider/Order_Provider.dart';
+import '../models/Cart_Object.dart';
 
 class Cart_Screen extends StatefulWidget {
   static const routeName = '/cartOne';

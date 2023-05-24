@@ -1,7 +1,20 @@
+///sare animation controller ko initialise initState mai hi - phle se pata ho.
+
+///Elevated Button – Ye use krega auth provider ke methods (signing state ka ek field – uske according) [jo ki restAPI bhejenge] provider ke through.
+///Jb iska click to isLoading bhi setState mai true (jb tk future return nhi ho jata).
+///Error aaye to dialog box dikha do [ismai loading ko wapis false setState se],
+///else to method mai apne aap hi provider ke jariye main.dart re-render hoke new route pai chala gaya hoga.
+
+///TextButton – Ye click hone pai setState mai mode change jisse UI mai farak ayega
+
+///Animated Container depending upon signing field [differing height of card] , andar ek aur animated based on signing [ki 0 height ya some height] – employs Fade Transition and inside Slide Transition.
+
+
 import 'dart:math';
-import 'package:shopping_mania/Provider/Auth_Provider.dart';
-import 'package:provider/provider.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_mania/Provider/Auth_Provider.dart';
 
 enum AuthMode { Signup, Login }
 

@@ -1,6 +1,15 @@
+///Each Product ki information/blueprint. Ek function toggle krne ka database mai
+/// Provider banaya kyunki do jagah kaam ek to product object mai , aur dusra fav items ki list dikhane mai
+/// Fetching wgerah jo hoti hai wo user ke data se aati hai
+/// to user ke data aur uspai lage filters se affect hoti hai
+
+///Thora ulta store hai - userFav --> Diff Users --> Unke products
+///Aapko product ke hm ka key toggle krne ke liye product tak pahuchna hoga aur http request mai token to dena hi hoga
+
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http ;
-import 'dart:convert';
 //jo provider usmai ye import.
 
 class Product with ChangeNotifier{

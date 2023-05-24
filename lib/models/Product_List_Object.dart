@@ -1,6 +1,13 @@
+///data milega jisse widget banana hai
+///Do button - edit wala push krne pai Nav.of(ctx).pushReplaceNamed(screen.rName) ;
+///Delete wala - to ye product list [jiska provider hai] pai effect. To usko import krke
+///uska method use , us method ke andar notifylistenerse hai , jisse is widget ka father jo ye list banwa raha tha
+///wo bhi rebuild aur database se, pure app se aur meri list se bhi [Jiske liye mai widget banata] wo product gone.
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_mania/Screens/Edit_Products_Screen.dart';
+
 import '../Provider/Products_Provider.dart';
 
 class Product_List_Object extends StatelessWidget {
@@ -13,7 +20,6 @@ class Product_List_Object extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaf = ScaffoldMessenger.of(context) ;
     final products = Provider.of<Products_Provider>(context) ;
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
@@ -43,7 +49,7 @@ class Product_List_Object extends StatelessWidget {
                   try{
                     await products.deleteProduct(prod_id);
                   } catch (error){
-                    scaf.showSnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Deleting Failed!',textAlign: TextAlign.center,),
                       )

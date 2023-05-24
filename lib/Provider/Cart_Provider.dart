@@ -1,7 +1,15 @@
-import 'package:flutter/foundation.dart';
+/// Sare different process for Cart Items , sb changes la rahe Map mai to notify listeners.
+/// App wise changes bas[updation]. Aur unke basis pai jo jo screen isko listen wo rebuilt - Cart_Screen hi
+/// Order database mai changes order provider kar raha , isko use krege Cart Screen mai
 
-// provider mai ye foundation wala import
-// listener mai wo provider wala import
+///Yaha pai Map Liya instead of List, kyunki search krna tha constant data changes ke liye.
+/// id as key [to search in Map] and also keep id in CartItemBluePrint - i believe this value id is redundant.
+
+import 'package:flutter/foundation.dart';
+/// provider mai ye foundation wala import
+/// listener mai wo provider wala import.
+
+/// Almost all field aise hi _krke private kar do, fir getter se access
 
 class Cart_BluePrint {
   final String id;
@@ -42,6 +50,7 @@ class Cart_Provider with ChangeNotifier {
     return _items.length;
   }
 
+  ///Add[from catalogue screen]/update[+ button] se
   void addItems(String id, String title, double price) {
     if (_items.containsKey(id)) {
       _items.update(
@@ -57,17 +66,20 @@ class Cart_Provider with ChangeNotifier {
     notifyListeners();
   }
 
+  ///Cart Item ko dlt hi kr rahe hai. jaise dismissible se.
   void removeItem(String id){
     _items.remove(id) ;
     notifyListeners() ;
   }
 
+  ///Jb Order kar denge to fir clean
   void clearItems(){
     _items.clear() ;
     notifyListeners() ;
   }
 
-  void deleteItems(String id) {
+  ///agar 0 ho jaye to remove bhi
+  void ReduceQuantity(String id){
 
       _items.update(
         id,(orig) => Cart_BluePrint(
@@ -81,6 +93,5 @@ class Cart_Provider with ChangeNotifier {
 
       notifyListeners();
     }
-
 
   }

@@ -1,10 +1,12 @@
+///Ye to khali widget hai wo bhi utahaya hai
+
 import 'package:flutter/material.dart';
 
-class Badge extends StatelessWidget {
+class Badge_Widget extends StatelessWidget {
   final Widget child;
   final int value;
 
-  const Badge({Key? key,
+  const Badge_Widget({Key? key,
     required this.child,
     required this.value,
   }) : super(key: key) ;

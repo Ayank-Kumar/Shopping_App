@@ -1,6 +1,11 @@
+///Product BluePrint Le raha hai to map it to Cart Order Widget [A Card] wrapped in a dismissible.
+///Product BluePrint consisting of price , name.
+///Yaha pai maine cart order widget mai redundantly price do baar dikh rakha hai side-by-side.
+
 import 'package:flutter/material.dart';
-import '../Provider/Cart_Provider.dart';
 import 'package:provider/provider.dart';
+
+import '../Provider/Cart_Provider.dart';
 
 class Cart_Object extends StatelessWidget {
   Cart_BluePrint cart_bluePrint;
@@ -92,7 +97,7 @@ class Cart_Object extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  onPressed: () => cartProvider.deleteItems(cart_bluePrint.id),
+                  onPressed: () => cartProvider.ReduceQuantity(cart_bluePrint.id),
                   splashColor: Colors.black,
                   splashRadius: 18.0,
                   icon: const Icon(

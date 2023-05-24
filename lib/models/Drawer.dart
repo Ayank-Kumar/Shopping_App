@@ -1,9 +1,14 @@
+///Whi drawer widget hai jo Slide hoke left se aata hai. Drawer mai bhi appBar hota hai
+///Achhe se Code Reusability nahi kari hai [List Tile ko extract kr dena chahiye]
+/// Sari screens import kara li hai and different list tile mai unpai Nav.of(ctx).pushReplaceNamed(Screen.rName) ;
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shopping_mania/Screens/User_BackStore_Screen.dart';
+
+import '../Provider/Auth_Provider.dart' ;
 import '../Screens/Catalogue_Screen.dart';
 import '../Screens/Order_Screen.dart' ;
-import 'package:provider/provider.dart';
-import '../Provider/Auth_Provider.dart' ;
 
 class Main_Drawer extends StatelessWidget {
 

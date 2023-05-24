@@ -1,5 +1,9 @@
+///Bs yhi ki ispai navigate krne time routing mai args de denge [Product id] jo yaha extract kr lena
+///fir products provider mai se wo id wala product dhundh nikalke accordingly page ban jayega dat bharke
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../Provider/Products_Provider.dart';
 
 class Product_Detail_Screen extends StatelessWidget {

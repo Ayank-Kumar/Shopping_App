@@ -1,3 +1,5 @@
+///Ye bs used in main.dart for loading condition (Jb auth chal raha ho).
+
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {

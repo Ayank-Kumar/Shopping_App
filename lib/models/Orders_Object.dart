@@ -1,6 +1,9 @@
-import 'dart:math';
+///Ise Order ka Data/BluePrint milega and use Widget mai convert.
+///Ek list tile jismai trailing icon aur ek expanded boolean field. Jb setState - to wo in dono ko change krega.
+/// Animated Container animation ke saath UI change krta hai [bs itna hi].
 
 import 'package:flutter/material.dart';
+
 import '../Provider/Order_Provider.dart' show Order_Item;
 
 class Orders_Object extends StatefulWidget {
@@ -9,7 +12,7 @@ class Orders_Object extends StatefulWidget {
   Orders_Object({required this.ordered_Items});
 
   //isko neeche use by using widget.var - krke
-  bool expanded = false;
+
 
   @override
   State<Orders_Object> createState() => _Orders_ObjectState();
@@ -17,6 +20,7 @@ class Orders_Object extends StatefulWidget {
 
 class _Orders_ObjectState extends State<Orders_Object>
     with SingleTickerProviderStateMixin {
+  bool expanded = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -25,12 +29,12 @@ class _Orders_ObjectState extends State<Orders_Object>
           ListTile(
             title:
                 Text('\$${widget.ordered_Items.tot_amount.toStringAsFixed(2)}'),
-            trailing: !widget.expanded
+            trailing: !expanded
                 ? IconButton(
                     icon: Icon(Icons.expand_more),
                     onPressed: () {
                       setState(() {
-                        widget.expanded = !widget.expanded;
+                        expanded = expanded;
                       });
                     },
                   )
@@ -38,7 +42,7 @@ class _Orders_ObjectState extends State<Orders_Object>
                     icon: Icon(Icons.expand_less),
                     onPressed: () {
                       setState(() {
-                        widget.expanded = !widget.expanded;
+                        expanded = !expanded;
                       });
                     },
                   ),
@@ -48,7 +52,7 @@ class _Orders_ObjectState extends State<Orders_Object>
           AnimatedContainer(
             duration: Duration(milliseconds: 400),
             padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
-            height: widget.expanded
+            height: expanded
                 ? widget.ordered_Items.itemsList.length * 20.0 + 10
                 : 0,
             //iske bina transition mai pixel overflow ho jaa raha tha.

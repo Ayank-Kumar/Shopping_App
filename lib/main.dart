@@ -1,17 +1,27 @@
+///Multi Provider - changenotifierProvider aur changeNotifierProxyProvider -
+///ye multiple providers ko combine krne ke liye.
+///Ye Routes ki tarah hi apne widget ko call krte hai import krke.
+///Args pass krte hai , jaise auth-provider ko token chahiye ho
+
+///Home screen ka UI based on Auth_Provider,
+///wo loading wala screen [jb token ho] futureBuider se, jb !auth aur login ki try krega.
+///jb auth to andar ki screen Baki routes rakhe hue hai isnai
+
 import 'package:flutter/material.dart';
-import 'package:shopping_mania/Screens/Catalogue_Screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_mania/Screens/Catalogue_Screen.dart';
 import 'package:shopping_mania/Screens/Order_Screen.dart';
 import 'package:shopping_mania/Screens/Splash_Screen.dart';
-import './Screens/product_Detail_Screen.dart';
-import 'Provider/Products_Provider.dart';
+
 import './Provider/Cart_Provider.dart';
 import './Provider/Order_Provider.dart';
+import './Screens/Authorization_Screen.dart';
+import './Screens/Edit_Products_Screen.dart';
+import './Screens/product_Detail_Screen.dart';
+import 'Provider/Auth_Provider.dart';
+import 'Provider/Products_Provider.dart';
 import 'Screens/Cart_Screen.dart';
 import 'Screens/User_BackStore_Screen.dart';
-import './Screens/Edit_Products_Screen.dart';
-import './Screens/Authorization_Screen.dart';
-import 'Provider/Auth_Provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,9 +36,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      //across screens effect aa raha ho , to sequentially pass karne ki jagah provider
         providers: [
-          //jb bhi build kr rahe widget - in sb mai current context dena hi hota hai
-          ChangeNotifierProvider(create: (_) => Auth_Provider()),
+          //jb bhi build kr rahe widget(screen bhi ek, provider bhi ek) - in sb mai current context dena hi hota hai
+          ChangeNotifierProvider(create: (_) => Auth_Provider()),//kabhi use na ho to aise _ krke chhor do
           //topological sort mai ek incoming edge(Auth_Provider) and khud se ek outgoing (provider) .
           //wo provider jo khud kisi provider ke change ko listen kr rahe ho.
           ChangeNotifierProxyProvider<Auth_Provider, Products_Provider>(

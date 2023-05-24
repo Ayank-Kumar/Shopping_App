@@ -1,10 +1,23 @@
+///Grid wala object banata hai Product (BluePrint se info leke). Image via Hero[fade into] animation
+///Provider access bhi to provide krwata hai apne fields aur methods ka
+
+///1st button - Fav --> Iske liye Product Provider rakha . Hr object ka apna Product provider.
+///although jab toggle - to listen - Product object rebuild na ho - listen to Product false kar diye
+///aur toggle button pai Consumer<Product> chala diya taki wo rerender ho jaye.
+///Aur Authentication Data ke liye Auth Provider rakha (listen false kar diya)
+
+///2nd Button - Cart - To iske liye Cart ka provider rakh liye taki iske addition method ka function mil jaye
+///aap Cart list mai kuchh bhi change ho usse Product re-render ho wo to bewakoofi - To listen false kr diya.
+///Cart pai badge aata hai - to wo provider ke method mai kar rakha hai.
+///SnackBar show krte hai - ScaffoldMessenger.of(ctx).showSnackBar() , iska bhi time wgerah field
+
 import 'package:flutter/material.dart';
-import 'package:shopping_mania/Provider/Products_Provider.dart';
-import '../Provider/Product_BluePrint.dart';
 import 'package:provider/provider.dart';
-import '../Provider/Cart_Provider.dart';
-import '../Screens/product_Detail_Screen.dart';
+
 import '../Provider/Auth_Provider.dart';
+import '../Provider/Cart_Provider.dart';
+import '../Provider/Product_BluePrint.dart';
+import '../Screens/product_Detail_Screen.dart';
 
 class Product_Object extends StatelessWidget {
   @override
@@ -75,7 +88,7 @@ class Product_Object extends StatelessWidget {
                         action: SnackBarAction(
                           label: 'UNDO',
                           onPressed: () {
-                            cart_Usage.deleteItems(product.id);
+                            cart_Usage.ReduceQuantity(product.id);
                           },
                         ),
                       ),
